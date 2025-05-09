@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worn fit - Fashion</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: inherit;
+            
+        }
+        a:hover {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        
+        :root {
+            --primary: #4CAF50;
+            --primary-light: #81C784;
+            --primary-dark: #388E3C;
+            --secondary: #F5F5DC;
+            --text: #333333;
+            --text-light: #f5f5f5;
+            --bg: #ffffff;
+            --card-bg: #f9f9f9;
+            --footer-bg: #2E7D32;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            
+        }
+
+        .dark-mode {
+            --primary: #81C784;
+            --primary-light: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #3E3E3E;
+            --text: #f5f5f5;
+            --text-light: #f5f5f5;
+            --bg: #121212;
+            --card-bg: #1E1E1E;
+            --footer-bg: #1B5E20;
+            --nav-bg: rgba(30, 30, 30, 0.9);
+            
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        header{
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            margin: 20px;
+            border-radius: 20px;
+          
+        }
+
+     
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            
+          
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+       
+
+        .hero {
+            height: 500px;
+            background: url(tyhb_16.jpg) no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Default opacity for dark mode */
+            z-index: 1;
+            transition: background 0.3s ease;
+        }
+
+        body:not(.dark-mode) .hero::before {
+            background: rgba(0, 0, 0, 0.25); /* Light mode opacity */
+        }
+
+        .hero-content {
+            width: 50%;
+            z-index: 2;
+            padding: 20px;
+            position: relative;
+            text-align: left;
+
+            
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: white;
+            color: var(--primary-dark);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            opacity: 0.1;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            font-size: 36px;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .add-to-cart {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: var(--primary-dark);
+            transform: rotate(90deg);
+        }
+
+        footer {
+            background: var(--footer-bg);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: white;
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #bdbdbd;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .products {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+        }
+
+
+      
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 64px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #73C0FC;
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  border-radius: 20px;
+  left: 2px;
+  bottom: 2px;
+  z-index: 2;
+  background-color: #e8e8e8;
+  transition: .4s;
+}
+
+.sun svg {
+  position: absolute;
+  top: 6px;
+  left: 36px;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+}
+
+.moon svg {
+  fill: #73C0FC;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+}
+
+/* .switch:hover */.sun svg {
+  animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+ 
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* .switch:hover */.moon svg {
+  animation: tilt 5s linear infinite;
+}
+
+@keyframes tilt {
+ 
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-10deg);
+  }
+
+  75% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.input:checked + .slider {
+  background-color: #183153;
+}
+
+.input:focus + .slider {
+  box-shadow: 0 0 1px #183153;
+}
+
+.input:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+.img-hero{
+    float: right;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    object-fit: cover;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.img-hero:hover {
+    transform: scale(1.05) rotate(2deg);
+    filter: brightness(1.1);
+}
+
+.product-card{
+    cursor: pointer;
+}
+html{
+    scroll-behavior: smooth;
+    scroll-padding-top: 180px;
+}
+
+.product-card.knit .product-image img {
+    transition:  all 0.5s ease;
+    content: url('dark_grey_crown_knitwear_weyz_04.jpg');
+    
+}
+
+.product-card.knit:hover .product-image img {
+    
+    content: url('light_grey_crown_knitwear_weyz_04.jpg');
+    
+}
+
+.product-card.syna .product-image img {
+    transition: all 0.5s ease;
+    content: url('syna.jpg');
+}
+
+.product-card.syna:hover .product-image img {
+    content: url('gg2.webp');
+}
+
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Worn<span>Fit</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#shop">New Arrivals</a></li>
+                    <li><a href="#best-sells">Collections</a></li>
+                    <li><a href="#footer">Contact</a></li>
+                </ul>
+                
+                    <!-- From Uiverse.io by andrew-demchenk0 --> 
+<label class="switch">
+  <span class="sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="#ffd43b"><circle r="5" cy="12" cx="12"></circle><path d="m21 13h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm-17 0h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm13.66-5.66a1 1 0 0 1 -.66-.29 1 1 0 0 1 0-1.41l.71-.71a1 1 0 1 1 1.41 1.41l-.71.71a1 1 0 0 1 -.75.29zm-12.02 12.02a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.41l.71-.66a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1 -.7.24zm6.36-14.36a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm0 17a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm-5.66-14.66a1 1 0 0 1 -.7-.29l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.29zm12.02 12.02a1 1 0 0 1 -.7-.29l-.66-.71a1 1 0 0 1 1.36-1.36l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.24z"></path></g></svg></span>
+  <span class="moon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="m223.5 32c-123.5 0-223.5 100.3-223.5 224s100 224 223.5 224c60.6 0 115.5-24.2 155.8-63.4 5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6-96.9 0-175.5-78.8-175.5-176 0-65.8 36-123.1 89.3-153.3 6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path></svg></span>   
+  <input type="checkbox" class="input">
+  <span class="slider"></span>
+</label>
+                
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <img class="img-hero" src="erasebg-transformed.png" alt="bb">
+        <div class="container">
+            
+            <div class="hero-content">
+                
+                <h1>Express Your Unique Style</h1>
+                <p>Discover the latest trends in teen fashion with our eco-friendly collection. Sustainable, stylish, and made for you.
+                Join the movement towards a more sustainable future with our eco-friendly fashion line. Shop now and make a difference!
+                Explore our curated selection of trendy and sustainable clothing that reflects your individuality.</p>
+                
+                <a href="#" class="btn">Shop Now</a>
+        
+                
+            </div>
+        </div>
+        <svg class="hero-pattern" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+            <path fill="white" d="M50,250 c0-110.5,89.5-200,200-200 s200,89.5,200,200 s-89.5,200-200,200 S50,360.5,50,250" opacity="0.1"></path>
+        </svg>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title">New Arrivals</h2>
+        <div class="products" id="shop">
+           <a href="cortez.html"> <div class="product-card">
+                <div class="product-image">
+                  <img src="cortez.jpg" alt="cortez jorts">
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Cortez Jorts</h3>
+                    <div class="product-price">
+                        <span class="price">$29.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-bag"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            </a>
+
+            <a href="syna.html">
+            <div class="product-card syna">
+                <div class="product-image">
+                    <img src="syna.jpg" alt="syna">
+                </div>
+                
+                <div class="product-info">
+                    <h3 class="product-title">Syna World Summer Tracksuit</h3>
+                    <div class="product-price">
+                        <span class="price">$59.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-bag"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            </a>
+             <a href="suvene.html">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="SUVENE Jogger flared fit.jpg" alt="Jogger Pants">
+                    <span class="product-badge">Sale</span>
+                </div>
+                
+                
+                    <div class="product-info">
+                    <h3 class="product-title">Suvene Jogger Flared</h3>
+                    <div class="product-price">
+                        <span class="price">$39.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-bag"></i>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+            </a>
+            
+            <a href="kint.html">
+
+            <div class="product-card knit">
+                <div class="product-image">
+                    <img src="dark_grey_crown_knitwear_weyz_04.jpg" alt="KNIT">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">"ABYSSAL" KNIT</h3>
+                    <div class="product-price">
+                        <span class="price">$49.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-bag"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+
+        <h2 class="section-title">Best Sellers</h2>
+        <div class="products" id="best-sells">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="DUO VINTAGE JOGGER PANTS WEYZ.jpg" alt="Crop Top">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Vintage Jogger Pants</h3>
+                    <div class="product-price">
+                        <span class="price">$24.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-bag"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="download.jpg" alt="cap">
+                    <span class="product-badge">Popular</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Baseball Cap</h3>
+                    <div class="product-price">
+                        <span class="price">$34.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-bag"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="denim Jort by divinbydivin.jpg" alt="Skirt">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Jorts</h3>
+                    <div class="product-price">
+                        <span class="price">$32.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-bag"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content" id="footer">
+                <div class="footer-column">
+                    <h3>VibeThreads</h3>
+                    <p>Sustainable fashion for the next generation. Quality clothing that cares for the planet.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>                      
+                        <a href="https://www.pinterest.com" target="_blank"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="#">All Products</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">Special Offers</a></li>
+                        <li><a href="#">Eco Collection</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Payment Methods</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 VibeThreads. All rights reserved. Designed with ♥ for the planet.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Theme toggle functionality
+    const themeSwitch = document.querySelector('.switch .input');
+    const body = document.body;
+
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem('theme') || 
+                       (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+    // Apply the saved or default theme
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        themeSwitch.checked = true;
+    }
+
+    // Toggle theme on switch change
+    themeSwitch.addEventListener('change', () => {
+        if (themeSwitch.checked) {
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+    </script>
+</body>
+</html>
