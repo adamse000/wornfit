@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suvene Joggers - WornFit</title>
+    <title>ABYSSAL KNIT - WornFit</title>
     <style>
         a {
             text-decoration: none;
@@ -141,6 +141,8 @@
             margin-bottom: 15px;
             cursor: pointer;
             transition: transform 0.3s;
+            height: 600px;
+            
         }
 
         .main-image:hover {
@@ -172,9 +174,11 @@
             flex: 1;
             min-width: 300px;
             background-color: var(--card-bg);
-            padding: 30px;
+            padding: 30px; 
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            height: 600px;
+                 
         }
 
         .product-title {
@@ -225,6 +229,7 @@
             font-size: 16px;
             margin-right: 15px;
             margin-bottom: 15px;
+            margin-top: 60px;
         }
 
         .btn:hover {
@@ -366,6 +371,7 @@
                 width: 100%;
             }
         }
+
 
         /* Cart Icon Styles */
         .cart-icon {
@@ -522,40 +528,34 @@
     <div class="container">
         <div class="product-container">
             <div class="product-gallery">
-                <img id="mainImage" src="SUVENE Jogger flared fit.jpg" alt="Cortez Jorts" class="main-image">
+                <img id="mainImage" src="download.jpg" alt="Cortez Jorts" class="main-image">
                 <div class="thumbnail-container">
-                    <img src="SUVENE Jogger flared fit.jpg" alt="Cortez Jorts Front" class="thumbnail" onclick="changeImage(this.src)">
-                    <img src="SUVENE joggers flared grey.jpg" alt="Cortez Jorts Back" class="thumbnail" onclick="changeImage(this.src)">
-                    <img src="black jogger.jpg" alt="Cortez Jorts Detail" class="thumbnail" onclick="changeImage(this.src)">
+                    <img src="download.jpg" alt="Cortez Jorts Front" class="thumbnail" onclick="changeImage(this.src)">
+                    <img src="capback.jpg" alt="Cortez Jorts Detail" class="thumbnail" onclick="changeImage(this.src)">
+                  
                     
                 </div>
             </div>
             <div class="product-details">
-                <h1 class="product-title">Suvene Jogger Flared</h1>
-                <p class="product-price">$39.99</p>
+                <h1 class="product-title">Arizona Diamondbacks Cap </h1>
+                <p class="product-price">$34.99</p>
                 
                 <div class="product-meta">
-                    <div class="meta-item">
-                        <span class="meta-label">Material:</span>
-                        <span>360 GSM / 70% COTTON</span>
-                    </div>
+                
                     <div class="meta-item">
                         <span class="meta-label">Size:</span>
-                        <span>S / M / L</span>
+                        <span> 7 / 7 ¼ / 7 ½ / 8</span>
                     </div>
-                    <div class="meta-item">
-                        <span class="meta-label">Fit:</span>
-                        <span>STRAIGHT FIT / BAGGY FIT</span>
-                    </div>
+                  
                  
                     <div class="meta-item">
                         <span class="meta-label">Colors:</span>
-                        <span>Black , Grey</span>
+                        <span>Light Violat , Gold </span>
                     </div>
                 </div>
                 
                 <p class="product-description">
-                    The Suvene joggers are the perfect blend of style and comfort. Made from high-quality materials, these joggers feature a unique flared design that sets them apart from the rest. Whether you're lounging at home or out on the town, these joggers will keep you looking stylish and feeling comfortable.
+                  The Arizona Diamondbacks Clubhouse Alt Black 59FIFTY Fitted Cap features an embroidered Diamondbacks alternate logo at the front panels with a matching MLB Batterman logo at the rear. Additional details include a dashmark mesh fabrication and a silicone logo on the undervisor.
                 </p>
                 
                 <button class="btn">Add to Cart</button>
@@ -605,6 +605,7 @@
             });
             event.target.style.borderColor = 'var(--primary)';
         }
+
         const cartIcon = document.querySelector('.cart-icon');
         const cartDropdown = document.createElement('div');
         cartDropdown.className = 'cart-dropdown';

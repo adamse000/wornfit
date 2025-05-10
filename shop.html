@@ -182,7 +182,7 @@
             margin-bottom: 30px;
         }
 
-        .btn {
+        .btn11 {
             display: inline-block;
             background: white;
             color: var(--primary-dark);
@@ -193,9 +193,10 @@
             transition: all 0.3s;
         }
 
-        .btn:hover {
+        .btn11:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            color: var(--primary-dark);
         }
 
         .hero-pattern {
@@ -530,8 +531,9 @@
     object-fit: cover;
     margin-top: 30px;
     cursor: pointer;
-    transition: transform 0.5s ease, filter 0.5s ease;
+    transition: transform 0.5s ease, filter 0.5s ease; 
 }
+
 
 .img-hero:hover {
     transform: scale(1.05) rotate(2deg);
@@ -566,6 +568,173 @@ html{
 .product-card.syna:hover .product-image img {
     content: url('gg2.webp');
 }
+.product-card.cap .product-image img {
+    transition: all 0.5s ease;
+    content: url('download.jpg');
+}
+
+.product-card.cap:hover .product-image img {
+    content: url('capback.jpg');
+}
+          
+
+
+
+
+
+ /* Cart Icon Styles */
+        .cart-icon {
+            position: relative;
+            margin-left: 20px;
+            cursor: pointer;
+            color: var(--text);
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+
+        .cart-icon:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Cart Dropdown Styles */
+        .cart-dropdown {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            width: 350px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            z-index: 1000;
+            display: none;
+            margin-top: 10px;
+        }
+
+        .cart-dropdown.active {
+            display: block;
+        }
+
+        .cart-dropdown h3 {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--primary-light);
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cart-item-remove {
+            color: #ff5252;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .cart-total {
+            font-weight: 700;
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .cart-actions .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            margin: 0;
+            border: none;
+        }
+
+
+
+
+
+           @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(20px); }
+    20% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(20px); }
+}
+  
+    .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 15px;
+            margin-bottom: 15px;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+          .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
 
 
     </style>
@@ -585,6 +754,11 @@ html{
                     <li><a href="#best-sells">Collections</a></li>
                     <li><a href="#footer">Contact</a></li>
                 </ul>
+                    <!-- Add this right after the dark mode switch in the nav section -->
+<div class="cart-icon">
+    <i class="fas fa-shopping-bag"></i>
+    <span class="cart-count">0</span>
+</div>
                 
                     <!-- From Uiverse.io by andrew-demchenk0 --> 
 <label class="switch">
@@ -593,6 +767,8 @@ html{
   <input type="checkbox" class="input">
   <span class="slider"></span>
 </label>
+
+
                 
             </nav>
         </div>
@@ -609,7 +785,7 @@ html{
                 Join the movement towards a more sustainable future with our eco-friendly fashion line. Shop now and make a difference!
                 Explore our curated selection of trendy and sustainable clothing that reflects your individuality.</p>
                 
-                <a href="#" class="btn">Shop Now</a>
+                <a href="#" class="btn11">Shop Now</a>
         
                 
             </div>
@@ -684,7 +860,7 @@ html{
                     <img src="dark_grey_crown_knitwear_weyz_04.jpg" alt="KNIT">
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">"ABYSSAL" KNIT</h3>
+                    <h3 class="product-title">"ABYSSAL" KNIT Weyz</h3>
                     <div class="product-price">
                         <span class="price">$49.99</span>
                         <button class="add-to-cart">
@@ -703,7 +879,7 @@ html{
                     <img src="DUO VINTAGE JOGGER PANTS WEYZ.jpg" alt="Crop Top">
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">Vintage Jogger Pants</h3>
+                    <h3 class="product-title">Vintage Jogger Pants Weyz</h3>
                     <div class="product-price">
                         <span class="price">$24.99</span>
                         <button class="add-to-cart">
@@ -712,8 +888,8 @@ html{
                     </div>
                 </div>
             </div>
-
-            <div class="product-card">
+              <a href="cap.html">
+            <div class="product-card cap">
                 <div class="product-image">
                     <img src="download.jpg" alt="cap">
                     <span class="product-badge">Popular</span>
@@ -728,7 +904,7 @@ html{
                     </div>
                 </div>
             </div>
-
+            </a>
             <div class="product-card">
                 <div class="product-image">
                     <img src="denim Jort by divinbydivin.jpg" alt="Skirt">
@@ -823,5 +999,113 @@ html{
         }
     });
     </script>
+   
+   <script>
+    // ... (keep all existing theme toggle code) ...
+
+    const cartIcon = document.querySelector('.cart-icon');
+    const cartDropdown = document.createElement('div');
+    cartDropdown.className = 'cart-dropdown';
+    cartDropdown.innerHTML = `
+        <h3>Your Cart</h3>
+        <div class="cart-items"></div>
+        <div class="cart-total">Total: $0.00</div>
+        <div class="cart-actions">
+            <button class="btn btn-outline">View Cart</button>
+            <button class="btn">Checkout</button>
+        </div>
+    `;
+    document.querySelector('header .container').appendChild(cartDropdown);
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.querySelector('.cart-count').textContent = cartCount;
+
+    cartIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        cartDropdown.classList.toggle('active');
+        updateCartDropdown();
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!cartDropdown.contains(e.target) && e.target !== cartIcon) {
+            cartDropdown.classList.remove('active');
+        }
+    });
+
+    // Add to cart buttons in shop page
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const productCard = this.closest('.product-card');
+            const product = {
+                id: productCard.querySelector('.product-title').textContent.trim(),
+                title: productCard.querySelector('.product-title').textContent.trim(),
+                price: parseFloat(productCard.querySelector('.price').textContent.replace('$', '')),
+                image: productCard.querySelector('.product-image img').src,
+                quantity: 1
+            };
+
+            const existingItem = cart.find(item => item.id === product.id);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push(product);
+            }
+
+            updateCart();
+            cartDropdown.classList.add('active');
+        });
+    });
+
+    function updateCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+        cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelector('.cart-count').textContent = cartCount;
+        updateCartDropdown();
+    }
+
+    function updateCartDropdown() {
+        const cartItemsContainer = cartDropdown.querySelector('.cart-items');
+        const cartTotal = cartDropdown.querySelector('.cart-total');
+
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<p>Your cart is empty</p>';
+            cartTotal.textContent = 'Total: $0.00';
+            return;
+        }
+
+        cartItemsContainer.innerHTML = '';
+        let total = 0;
+
+        cart.forEach(item => {
+            total += item.price * item.quantity;
+            const itemElement = document.createElement('div');
+            itemElement.className = 'cart-item';
+            itemElement.innerHTML = `
+                <img src="${item.image}" alt="${item.title}">
+                <div class="cart-item-info">
+                    <div class="cart-item-title">${item.title}</div>
+                    <div class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity}</div>
+                    <div class="cart-item-remove">Remove</div>
+                </div>
+            `;
+            cartItemsContainer.appendChild(itemElement);
+
+            itemElement.querySelector('.cart-item-remove').addEventListener('click', (e) => {
+                e.stopPropagation();
+                cart = cart.filter(cartItem => cartItem.id !== item.id);
+                updateCart();
+            });
+        });
+
+        cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    // Initialize cart display
+    updateCartDropdown();
+</script>
 </body>
 </html>

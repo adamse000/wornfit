@@ -174,7 +174,7 @@
             background-color: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
         }
 
         .product-title {
@@ -367,6 +367,127 @@
                 width: 100%;
             }
         }
+
+        /* Cart Icon Styles */
+        .cart-icon {
+            position: relative;
+            margin-left: 20px;
+            cursor: pointer;
+            color: var(--text);
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+
+        .cart-icon:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Cart Dropdown Styles */
+        .cart-dropdown {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            width: 350px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            z-index: 1000;
+            display: none;
+            margin-top: 10px;
+        }
+
+        .cart-dropdown.active {
+            display: block;
+        }
+
+        .cart-dropdown h3 {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--primary-light);
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cart-item-remove {
+            color: #ff5252;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .cart-total {
+            font-weight: 700;
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .cart-actions .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            margin: 0;
+            border: none;
+        }
+
+
+
+
+
+           @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(20px); }
+    20% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(20px); }
+}
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -383,6 +504,10 @@
                     <li><a href="shop.html">Collections</a></li>
                     <li><a href="shop.html">Contact</a></li>
                 </ul>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </div>
                 
                 <!-- Dark mode switch -->
                 <label class="switch">
@@ -481,6 +606,106 @@
                 thumb.style.borderColor = 'transparent';
             });
             event.target.style.borderColor = 'var(--primary)';
+        }
+
+        const cartIcon = document.querySelector('.cart-icon');
+        const cartDropdown = document.createElement('div');
+        cartDropdown.className = 'cart-dropdown';
+        cartDropdown.innerHTML = `
+            <h3>Your Cart</h3>
+            <div class="cart-items"></div>
+            <div class="cart-total">Total: $0.00</div>
+            <div class="cart-actions">
+                <button class="btn btn-outline">View Cart</button>
+                <button class="btn">Checkout</button>
+            </div>
+        `;
+        document.querySelector('header .container').appendChild(cartDropdown);
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelector('.cart-count').textContent = cartCount;
+
+        cartIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            cartDropdown.classList.toggle('active');
+            updateCartDropdown();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!cartDropdown.contains(e.target) && e.target !== cartIcon) {
+                cartDropdown.classList.remove('active');
+            }
+        });
+
+        document.querySelectorAll('.btn:not(.btn-outline)').forEach(button => {
+            if (button.textContent.includes('Add to Cart')) {
+                button.addEventListener('click', addToCart);
+            }
+        });
+
+        function addToCart() {
+            const productCard = this.closest('.product-details') || this.closest('.product-card');
+            const product = {
+                id: productCard.querySelector('.product-title').textContent.trim(),
+                title: productCard.querySelector('.product-title').textContent.trim(),
+                price: parseFloat(productCard.querySelector('.product-price').textContent.replace('$', '')),
+                image: productCard.querySelector('.main-image') ? productCard.querySelector('.main-image').src : 
+                      productCard.querySelector('.product-image img').src,
+                quantity: 1
+            };
+
+            const existingItem = cart.find(item => item.id === product.id);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push(product);
+            }
+
+            updateCart();
+        }
+
+        function updateCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = cartCount;
+            updateCartDropdown();
+        }
+
+        function updateCartDropdown() {
+            const cartItemsContainer = cartDropdown.querySelector('.cart-items');
+            const cartTotal = cartDropdown.querySelector('.cart-total');
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Your cart is empty</p>';
+                cartTotal.textContent = 'Total: $0.00';
+                return;
+            }
+
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.title}</div>
+                        <div class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity}</div>
+                        <div class="cart-item-remove">Remove</div>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+
+                itemElement.querySelector('.cart-item-remove').addEventListener('click', () => {
+                    cart = cart.filter(cartItem => cartItem.id !== item.id);
+                    updateCart();
+                });
+            });
+
+            cartTotal.textContent = `Total: $${total.toFixed(2)}`;
         }
     </script>
 </body>
